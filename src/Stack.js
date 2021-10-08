@@ -7,36 +7,43 @@ class Node{
 
 class Stack{
   constructor(){
-    this.top = null;
+    this.topOfStack = null;
     this.length = 0;
   }
 
   push(item){
     const node = new Node(item);
-    if(this.top!=null){
-      node.next = this.top; 
+    if(this.topOfStack!=null){
+      node.next = this.topOfStack; 
     }
-      this.top = node;
+      this.topOfStack = node;
       this.length+=1;
   }
 
   pop(){
-    const popItem = this.top;
-    this.top = this.top.next;
+    if(this.length==0)return -1;
+    const popItem = this.topOfStack;
+    this.topOfStack = popItem.next;
     this.length-=1;
+
     return popItem.item
   }
+
+  size(){
+    return this.length;
+  }
+
+  empty(){
+    if(this.length==0) return 1;
+    else return 0;
+  }
+
+  top(){
+    if(this.length==0)return -1;
+    return this.topOfStack.item; 
+  }
+
 }
 
 
-let x = [1,5,6,7,8,3];
 
-let stack = new Stack();
-
-x.forEach(v=>{
-  stack.push(v)
-})
-
-console.log(stack)
-console.log(stack.pop())
-console.log(stack.pop())

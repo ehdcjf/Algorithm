@@ -15,9 +15,9 @@ class Queue{
 
   push(item){
     const node = new Node(item)
-    if(this.head===null){
+    if(this.head==null){
       this.head= node;
-      this.head.next = this.tail;
+      this.head.next = null;
     }else{
       this.tail.next = node;
     }
@@ -30,6 +30,28 @@ class Queue{
     const popItem = this.head;
     this.head = this.head.next;
     this.length -=1;
-    return popItem;
+    return popItem.item;
+  }
+
+  size(){
+    return this.length;
+  }
+
+  empty(){
+    if(this.length==0){
+      return 1;
+    }else{
+      return 0;
+    }
+  }
+
+  front(){
+    if(this.empty()==1) return -1;
+    return this.head.item; 
+  }
+
+  back(){
+    if(this.empty()==1) return -1;
+    return this.tail.item; 
   }
 }
